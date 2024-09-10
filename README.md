@@ -23,17 +23,15 @@ If you haven't heard a song for the first time, you may not know whether it is e
 
 # Code Explanation:
 
-### `getLyrics(artist, title)`
-
-```
+```python
 def getLyrics(artist, title):
   url = f"https://api.lyrics.ovh/v1/{artist}/{title}"
-  response = requests.get(url)
+  response = requests.get(url) 
   if response.status_code == 200:
     data = response.json()
     lyrics = data['lyrics']
     return lyrics
-  else:
+  else: 
     return "No Lyrics Found"
 ```
 
@@ -42,7 +40,15 @@ This function retrieves the lyrics for the specified song using the Lyrics.ovh A
 - **Parameters**: `artist` (str), `title` (str)
 - **Returns**: Lyrics as a string if found, or `"No Lyrics Found"` if the song does not exist
 
-### `containsProfanity(lyrics)`
+```python
+def containsProfanity(lyrics):
+  url = f"https://www.purgomalum.com/service/containsprofanity?text={lyrics}"
+  r = requests.get(url)
+  if r.status_code == 200:
+    return r.text 
+  else:
+    return "Cant Check"
+```
 
 This function checks if the provided lyrics contain profanity using the Purgomalum API.
 
